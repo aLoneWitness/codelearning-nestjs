@@ -19,7 +19,7 @@ export class QuizResolver {
   }
 
   @Query(() => Quiz, { name: 'quiz' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.quizService.findOne(id);
   }
 
@@ -29,7 +29,7 @@ export class QuizResolver {
   }
 
   @Mutation(() => Quiz)
-  removeQuiz(@Args('id', { type: () => Int }) id: number) {
+  removeQuiz(@Args('id', { type: () => String }) id: string) {
     return this.quizService.remove(id);
   }
 }
