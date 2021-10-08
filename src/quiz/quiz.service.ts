@@ -12,7 +12,7 @@ export class QuizService {
   ) {}
 
   create(createQuizInput: CreateQuizInput) {
-    const quiz = this.quizRepository.create();
+    const quiz = new Quiz();
     quiz.name = createQuizInput.name;
     quiz.description = createQuizInput.description;
     return this.quizRepository.save(quiz);

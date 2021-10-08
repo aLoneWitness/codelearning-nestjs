@@ -1,5 +1,6 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Assignment } from '../../assignment/entities/assignment.entity';
 
 @ObjectType()
 @Entity()
@@ -15,4 +16,10 @@ export class Quiz {
   @Field({ description: 'Description of what the Quiz is for' })
   @Column()
   description: string;
+
+  @Field(() => [Assignment], {
+    description: 'A set of assignments that is part of the Quiz',
+  })
+  @OneToMany(() => Assignment, (assignment) => assignment.quiz)
+  assignments: Assignment[];
 }

@@ -1,12 +1,24 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Int,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { QuizService } from './quiz.service';
 import { Quiz } from './entities/quiz.entity';
 import { CreateQuizInput } from './dto/create-quiz.input';
 import { UpdateQuizInput } from './dto/update-quiz.input';
+import { AssignmentService } from '../assignment/assignment.service';
 
 @Resolver(() => Quiz)
 export class QuizResolver {
-  constructor(private readonly quizService: QuizService) {}
+  constructor(
+    private readonly quizService: QuizService,
+    private readonly assignmentService: AssignmentService,
+  ) {}
 
   @Mutation(() => Quiz)
   createQuiz(@Args('createQuizInput') createQuizInput: CreateQuizInput) {
@@ -31,5 +43,10 @@ export class QuizResolver {
   @Mutation(() => Quiz)
   removeQuiz(@Args('id', { type: () => String }) id: string) {
     return this.quizService.remove(id);
+  }
+
+  @ResolveField()
+  async assignments(@Parent() quiz: Quiz) {
+    return this.assignmentService.findByQuiz(quiz.id);
   }
 }

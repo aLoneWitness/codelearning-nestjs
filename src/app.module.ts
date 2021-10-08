@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { QuizModule } from './quiz/quiz.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Quiz } from './quiz/entities/quiz.entity';
+import { AssignmentModule } from './assignment/assignment.module';
 
 @Module({
   imports: [
@@ -18,10 +18,11 @@ import { Quiz } from './quiz/entities/quiz.entity';
       username: 'root',
       password: 'secret',
       database: 'codelearning',
-      entities: [Quiz],
+      entities: ['dist/**/*.entity.js'],
       synchronize: true,
     }),
     QuizModule,
+    AssignmentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
