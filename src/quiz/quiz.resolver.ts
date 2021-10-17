@@ -25,7 +25,7 @@ export class QuizResolver {
     return this.quizService.create(createQuizInput);
   }
 
-  @Query(() => [Quiz], { name: 'quiz' })
+  @Query(() => [Quiz], { name: 'quizzes' })
   findAll() {
     return this.quizService.findAll();
   }

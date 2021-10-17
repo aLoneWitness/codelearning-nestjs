@@ -14,7 +14,7 @@ export class Quiz {
   name: string;
 
   @Field({ description: 'Description of what the Quiz is for' })
-  @Column()
+  @Column({ type: 'text' })
   description: string;
 
   @Field(() => [Assignment], {

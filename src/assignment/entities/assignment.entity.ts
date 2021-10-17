@@ -21,7 +21,6 @@ export class Assignment {
   @Column()
   expectedResult: string;
 
-  // @Field(() => Quiz, { description: 'Quiz that the assignment is part of' })
   @ManyToOne(() => Quiz, (quiz) => quiz.assignments)
   quiz: Quiz;
 }
