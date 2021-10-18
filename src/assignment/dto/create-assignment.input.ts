@@ -5,6 +5,9 @@ export class CreateAssignmentInput {
   @Field({ description: 'Name of the Assignment' })
   name: string;
 
+  @Field({ description: 'Position in which it is located in the Quiz' })
+  position: number;
+
   @Field({ description: 'Description of the Assignment' })
   description: string;
 

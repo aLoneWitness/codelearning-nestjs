@@ -17,6 +17,12 @@ export class Quiz {
   @Column({ type: 'text' })
   description: string;
 
+  @Field({
+    description: 'Programming language the quiz is gonna take assignments in',
+  })
+  @Column({ type: 'text' })
+  language: string;
+
   @Field(() => [Assignment], {
     description: 'A set of assignments that is part of the Quiz',
   })

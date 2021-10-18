@@ -9,6 +9,10 @@ export class Assignment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Field({ description: 'Position in which it is located in the Quiz' })
+  @Column()
+  position: number;
+
   @Field({ description: 'Name of the Assignment' })
   @Column()
   name: string;
