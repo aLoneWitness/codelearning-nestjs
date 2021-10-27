@@ -1,25 +1,13 @@
-import {
-  Resolver,
-  Query,
-  Mutation,
-  Args,
-  Int,
-  ResolveField,
-  Parent,
-} from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { AssignmentService } from './assignment.service';
 import { Assignment } from './entities/assignment.entity';
 import { CreateAssignmentInput } from './dto/create-assignment.input';
 import { Quiz } from '../quiz/entities/quiz.entity';
 import { UpdateAssignmentInput } from './dto/update-assignment.input';
-import { QuizService } from '../quiz/quiz.service';
 
 @Resolver(() => Assignment)
 export class AssignmentResolver {
-  constructor(
-    private readonly assignmentService: AssignmentService,
-    private readonly quizService: QuizService,
-  ) {}
+  constructor(private readonly assignmentService: AssignmentService) {}
 
   @Mutation(() => Assignment)
   createAssignment(

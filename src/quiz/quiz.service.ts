@@ -15,6 +15,7 @@ export class QuizService {
     const quiz = new Quiz();
     quiz.name = createQuizInput.name;
     quiz.description = createQuizInput.description;
+    quiz.language = createQuizInput.language;
     return this.quizRepository.save(quiz);
   }
 

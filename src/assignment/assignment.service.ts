@@ -29,6 +29,7 @@ export class AssignmentService {
     assignment.name = createAssignmentInput.name;
     assignment.description = createAssignmentInput.description;
     assignment.expectedResult = createAssignmentInput.expectedResult;
+    assignment.position = createAssignmentInput.position;
     assignment.quiz = quiz;
     return this.assignmentRepository.save(assignment);
   }
@@ -50,6 +51,7 @@ export class AssignmentService {
     assignment.name = updateAssignmentInput.name;
     assignment.description = updateAssignmentInput.description;
     assignment.expectedResult = updateAssignmentInput.expectedResult;
+    assignment.position = updateAssignmentInput.position;
     await this.assignmentRepository.save(assignment);
     return assignment;
   }
