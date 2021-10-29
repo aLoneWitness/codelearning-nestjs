@@ -5,11 +5,13 @@ import { QuizModule } from './quiz/quiz.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AssignmentModule } from './assignment/assignment.module';
+import { AssignmentInputModule } from './assignment-input/assignment-input.module';
 
 @Module({
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: true,
+      installSubscriptionHandlers: true,
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -23,6 +25,7 @@ import { AssignmentModule } from './assignment/assignment.module';
     }),
     QuizModule,
     AssignmentModule,
+    AssignmentInputModule,
   ],
   controllers: [AppController],
   providers: [AppService],
