@@ -81,6 +81,8 @@ export class AssignmentInputResolver {
         map((result) => {
           const assignmentInputResult = new AssignmentInputResult();
           assignmentInputResult.result = result.data.stdout;
+          assignmentInputResult.errorCode = result.data.error;
+          assignmentInputResult.errorMessage = result.data.stderr;
           return assignmentInputResult;
         }),
       );

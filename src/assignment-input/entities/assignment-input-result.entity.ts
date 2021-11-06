@@ -4,4 +4,10 @@ import { ObjectType, Field } from '@nestjs/graphql';
 export class AssignmentInputResult {
   @Field()
   result: string;
+
+  @Field()
+  errorCode: string;
+
+  @Field()
+  errorMessage: string;
 }
