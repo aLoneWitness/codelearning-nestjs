@@ -6,6 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AssignmentModule } from './assignment/assignment.module';
 import { AssignmentInputModule } from './assignment-input/assignment-input.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
