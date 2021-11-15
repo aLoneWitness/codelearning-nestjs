@@ -11,6 +11,8 @@ async function bootstrap() {
     .addTag('learning')
     .build();
 
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 

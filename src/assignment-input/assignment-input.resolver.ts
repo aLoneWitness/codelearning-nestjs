@@ -6,7 +6,7 @@ import { UpdateAssignmentInputInput } from './dto/update-assignment-input.input'
 import { PubSub } from 'graphql-subscriptions';
 import { AssignmentInputResult } from './entities/assignment-input-result.entity';
 import { HttpService } from '@nestjs/axios';
-import { catchError, from, map, of, switchMap, throwError } from 'rxjs';
+import { catchError, from, map, of, switchMap, tap, throwError } from 'rxjs';
 
 @Resolver(() => AssignmentInput)
 export class AssignmentInputResolver {
@@ -54,18 +54,10 @@ export class AssignmentInputResolver {
       .pipe(
         switchMap((assignmentInput: AssignmentInput) => {
           return this.httpService.post(
-            'http://execute.vandinteren.me:8088/run',
+            `https://localhost:7037/CodeRunning`,
             {
-              image: 'glot/java:latest',
-              payload: {
-                language: 'java',
-                files: [
-                  {
-                    name: 'Main.java',
-                    content: assignmentInput.input,
-                  },
-                ],
-              },
+              CodeLanguage: 0,
+              Code: assignmentInput.input
             },
             options,
           );
@@ -80,9 +72,9 @@ export class AssignmentInputResolver {
       .pipe(
         map((result) => {
           const assignmentInputResult = new AssignmentInputResult();
-          assignmentInputResult.result = result.data.stdout;
+          assignmentInputResult.result = result.data.result;
           assignmentInputResult.errorCode = result.data.error;
-          assignmentInputResult.errorMessage = result.data.stderr;
+          assignmentInputResult.errorMessage = result.data.error;
           return assignmentInputResult;
         }),
       );
